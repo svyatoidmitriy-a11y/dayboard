@@ -1,0 +1,23 @@
+DAYBOARD - reproducible build preparation report
+Date: 2026-10-28
+Platform executing these checks: Linux x86_64 (NOT Windows)
+
+PASSED:
+- node --check web/app.js
+- JSON config loads and references a bundled frontend directory
+- Tauri IPC Content Security Policy updated to permit ipc: and http://ipc.localhost
+- Playwright Chromium + mocked Tauri JS bridge: 9 PASS results
+- Rust native validation tests CREATED for Windows CI (not executed here)
+- PowerShell Windows PE/runtime smoke test CREATED for Windows CI (not executed here)
+- Github Actions workflow Windows x64 build and test CREATED (not triggered here)
+
+NOT PERFORMED / NOT CLAIMED:
+- cargo test (Rust is unavailable on this Linux runner)
+- cargo tauri build (Rust, SDK and network unavailable)
+- Windows .exe creation
+- Native Windows process launch
+- Windows 11 install/notification/autostart/monitor/RAM tests
+
+The GitHub Actions workflow is intended to build the NSIS setup .exe and standalone
+Tauri dayboard.exe on Windows and upload both, then assert that the app starts
+and initializes SQLite. It must show success before using the installer.
