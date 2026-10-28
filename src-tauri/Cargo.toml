@@ -1,6 +1,6 @@
 [package]
 name = "dayboard"
-version = "1.0.0"
+version = "1.0.1"
 description = "DAYBOARD — local-first day and week planning"
 authors = ["DAYBOARD"]
 edition = "2021"

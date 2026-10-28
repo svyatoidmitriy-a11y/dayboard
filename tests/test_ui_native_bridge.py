@@ -3,6 +3,7 @@ Requires Python playwright and Chromium; this does NOT validate a Windows binary
 """
 import json
 from pathlib import Path
+from shutil import which
 from playwright.sync_api import sync_playwright
 
 PROJECT = Path(__file__).resolve().parent.parent
@@ -46,7 +47,7 @@ window.__TAURI__ = {
 def run():
   errors=[]
   with sync_playwright() as p:
-    browser=p.chromium.launch(headless=True,executable_path='/usr/bin/chromium', args=['--no-sandbox','--disable-gpu'])
+    browser=p.chromium.launch(headless=True,args=['--no-sandbox','--disable-gpu'],**({'executable_path':which('chromium') or which('chromium-browser')} if (which('chromium') or which('chromium-browser')) else {}))
     page=browser.new_page(viewport={'width':1500,'height':900})
     page.on('pageerror', lambda err: errors.append(str(err)))
     page.set_content(HTML)
